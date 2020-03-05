@@ -1,0 +1,49 @@
+{
+  "name": "w2g-node",
+  "version": "1.0.0",
+  "description": "Node.js wrapper for http://ware2go.com/ REST API.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dturton/w2g-node"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest --config jest.config.js",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "ware2go",
+    "api",
+    "w2g"
+  ],
+  "author": "David Turton <dturton@etrivo.com> (https://etrivo.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^13.7.7",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.2.1",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3",
+    "@types/jest": "^25.1.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
