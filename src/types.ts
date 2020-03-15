@@ -64,7 +64,7 @@ export interface IOrderCreate {
 
 export interface SkuQuantity {
   skuId: string;
-  skuName: string;
+  skuName?: string;
   unitQuantity: number;
   proofOfDelivery?: string;
   insuranceRequired?: boolean;

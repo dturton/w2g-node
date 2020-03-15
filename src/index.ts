@@ -1,12 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { IOrder, IW2gConfig, Environment, IOrderCreate, OrderStatus } from './types';
-
+import * as Types from './types';
 export default class W2g {
   private api: AxiosInstance;
   private config: AxiosRequestConfig;
-  private w2gEnv: Environment;
+  private w2gEnv: Types.Environment;
 
-  public constructor(w2gConfig: IW2gConfig, config?: AxiosRequestConfig) {
+  public constructor(w2gConfig: Types.IW2gConfig, config?: AxiosRequestConfig) {
     this.w2gEnv = w2gConfig.env;
     this.config = {
       baseURL: this.getBaseUrl(w2gConfig.merchantId),
@@ -21,9 +20,7 @@ export default class W2g {
     this.api.interceptors.response.use(
       (response: AxiosResponse) => response,
       (error: any) => {
-        const { response } = error;
-        const { request, ...errorObject } = response; // take everything but 'request'
-        throw error;
+        return Promise.reject(error);
       },
     );
   }
@@ -33,15 +30,15 @@ export default class W2g {
     return matches;
   }
 
-  public async getOrder(orderId: number): Promise<IOrder> {
+  public async getOrder(orderId: number): Promise<Types.IOrder> {
     const response: AxiosResponse = await this.api.get(`orders/${orderId}`);
-    const order: IOrder = response.data;
+    const order: Types.IOrder = response.data;
     return order;
   }
 
-  public async postOrder(order: IOrderCreate): Promise<IOrder> {
+  public async postOrder(order: Types.IOrderCreate): Promise<Types.IOrder> {
     const response: AxiosResponse = await this.api.post(`orders`, order);
-    const orderResponse: IOrder = response.data;
+    const orderResponse: Types.IOrder = response.data;
     return orderResponse;
   }
 
@@ -53,3 +50,5 @@ export default class W2g {
     return baseUrl;
   }
 }
+
+export { Types };
