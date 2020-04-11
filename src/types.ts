@@ -17,6 +17,7 @@ export type OrderStatus =
   | 'PICKING'
   | 'PICKED'
   | 'APPROVED'
+  | 'IN_TRANSIT'
   | 'DELIVERED';
 
 export type Environment = 'stage' | 'prod';
