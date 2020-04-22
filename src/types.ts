@@ -75,7 +75,7 @@ export interface SkuQuantity {
 
 export interface WarehouseFacility {
   id: number;
-  name: string;
+  name?: string;
 }
 
 export interface Content {
