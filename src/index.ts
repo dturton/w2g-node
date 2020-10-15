@@ -45,8 +45,8 @@ export default class W2g {
   private getBaseUrl(merchandId: number): string {
     const baseUrl: string =
       this.w2gEnv === 'prod'
-        ? `https://openapi.ware2go.co/ware2go/v1/merchants/${merchandId}`
-        : `https://openapi.staging.ware2goproject.com/ware2go/v1/merchants/${merchandId}`;
+        ? `https://openapi.ware2go.io/v1/merchants/${merchandId}`
+        : `https://openapi.staging.tryware2go.com/v1/merchants/${merchandId}`;
     return baseUrl;
   }
 }
